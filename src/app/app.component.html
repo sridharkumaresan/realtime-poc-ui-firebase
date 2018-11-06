@@ -1,0 +1,50 @@
+<mat-toolbar color="primary" class="sticky-toolbar">
+  <span class="logo">
+      <mat-icon svgIcon="angular_icon"></mat-icon>
+  </span>
+  <span>Some-Kind-Of List</span>
+  <span class="example-spacer"></span>
+  <span>
+    <button mat-button [matMenuTriggerFor]="menu" color="accent">Policies & Matrices</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </span>
+  <span>
+    <button mat-button [matMenuTriggerFor]="help" color="accent">Help</button>
+    <mat-menu #help="matMenu">
+      <mat-list>
+        <mat-list-item>London 
+          <span class="phone-number">
+            +99 0123 456 7890
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Americas
+          <span class="phone-number">
+            +99 0123 456 7890
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Hong Kong
+          <span class="phone-number">
+            +99 0123 456 7890
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Tokyo
+          <span class="phone-number">
+            +99 0123 456 7890
+          </span>
+        </mat-list-item>
+      </mat-list>
+    </mat-menu>
+  </span>
+  <span class="user-face">
+    <!-- <button mat-button [matMenuTriggerFor]="user" > -->
+        <mat-icon>face</mat-icon>
+    <!-- </button> -->
+  </span>
+</mat-toolbar>
+<router-outlet></router-outlet>

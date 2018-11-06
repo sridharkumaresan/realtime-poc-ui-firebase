@@ -1,0 +1,7 @@
+[
+        {"id":1,"originalDateAdded":"9/29/2018","issuerName":"Herman and Sons","esmi":82,"equityTicker":"LYD","debtTicker":"IDR","restrictionType":"Orange","restrictionCategory":"Violet","writtenCom":"Yellow","alphaCapture":"Green","trading":"Pink"},
+        {"id":2,"originalDateAdded":"1/16/2018","issuerName":"Beahan, McKenzie and Feeney","esmi":3,"equityTicker":"TND","debtTicker":"CNY","restrictionType":"Goldenrod","restrictionCategory":"Red","writtenCom":"Aquamarine","alphaCapture":"Maroon","trading":"Goldenrod"},
+        {"id":3,"originalDateAdded":"12/2/2017","issuerName":"Jerde, Rodriguez and Anderson","esmi":16,"equityTicker":"LKR","debtTicker":"EUR","restrictionType":"Green","restrictionCategory":"Violet","writtenCom":"Puce","alphaCapture":"Crimson","trading":"Fuscia"},
+        {"id":4,"originalDateAdded":"4/11/2018","issuerName":"Schiller-McClure","esmi":40,"equityTicker":"CZK","debtTicker":"EUR","restrictionType":"Teal","restrictionCategory":"Purple","writtenCom":"Red","alphaCapture":"Turquoise","trading":"Aquamarine"},
+        {"id":5,"originalDateAdded":"3/30/2018","issuerName":"Walsh Inc","esmi":25,"equityTicker":"EUR","debtTicker":"RUB","restrictionType":"Purple","restrictionCategory":"Pink","writtenCom":"Yellow","alphaCapture":"Khaki","trading":"Fuscia"}
+]

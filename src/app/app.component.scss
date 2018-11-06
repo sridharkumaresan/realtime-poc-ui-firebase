@@ -1,0 +1,40 @@
+.sticky-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+// .menu-item{
+//     color: #68EFAD;
+// }
+.example-spacer {
+    flex: 1 1 auto;
+}
+.mat-list {
+    .mat-list-item {
+        .phone-number {
+            height: auto;
+            padding: 0;
+            margin-left: 10px;
+        }
+    }
+    
+}
+.user-face {
+    border: 1px solid;
+    display: flex;
+    border-radius: 50%;
+    padding: .5rem;
+    box-shadow: inset 3px 3px 4px #000;
+    
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    .mat-icon {
+        height: 3.5rem;
+        width: 3.5rem;
+    }
+}

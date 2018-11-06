@@ -1,0 +1,65 @@
+<mat-expansion-panel class="filter-panel" [expanded]="panelOpenState" #mep>
+  <mat-expansion-panel-header class="panel-header">
+    <mat-panel-title>
+      <mat-icon>filter_list</mat-icon>
+    </mat-panel-title>
+    <mat-panel-description *ngIf="filters">
+        <mat-chip-list>
+            <mat-chip color="warn" selected [removable]="true" (removed)="removeFilter()">
+              Remove Filter
+              <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+            </mat-chip> 
+        </mat-chip-list>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="expansion-body">
+    <form [formGroup]="formGroup" class="form">
+      <mat-radio-group class="search-for" formControlName="itemType">
+        <mat-radio-button class="search-for-radiobutton" [value]="'issuer'" color="primary">
+          Issuer
+        </mat-radio-button>
+        <mat-radio-button class="search-for-radiobutton" [value]="'security'" color="primary">
+          Security
+        </mat-radio-button>
+      </mat-radio-group>
+      {{searchFor}}
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Issuer" formControlName="issuerName">
+      </mat-form-field>
+      <mat-form-field>
+          <mat-select placeholder="Tier" formControlName="tier" multiple>
+            <mat-option *ngFor="let tier of tierList" [value]="tier.value">
+              {{tier.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Restriction Type" formControlName="restrictionType" multiple>
+          <mat-option *ngFor="let restrictionType of restrictionTypeList" [value]="restrictionType.value">
+            {{restrictionType.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Restriction Category" formControlName="restrictionCategory" multiple>
+          <!-- <mat-select-trigger>
+            {{restrictionCategory.value ? restrictionCategory.value[0] : ''}}
+            <span *ngIf="restrictionCategory.value?.length > 3" class="example-additional-selection">
+              (+{{restrictionCategory.value.length - 1}} others)
+            </span>
+          </mat-select-trigger> -->
+          <mat-option *ngFor="let restrictionCategory of restrictionCategoryList" [value]="restrictionCategory.value">
+            {{restrictionCategory.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="action-section">
+        <button mat-raised-button color="primary" type="submit" class="button" (click)="applyFilter()">Filter</button>
+        <button mat-raised-button color="warn" type="submit" class="button" (click)="removeFilter()">Remove</button>    
+      </div>
+      
+    </form>
+  </div>
+  
+
+</mat-expansion-panel>

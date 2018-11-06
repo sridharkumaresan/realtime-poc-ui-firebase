@@ -1,0 +1,19 @@
+
+table {
+    width: 100%;
+    tr {
+        &.mat-header-row {
+            // background: #673ab7;
+            .mat-header-cell{
+                // color: #007eb6;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+.newitem-card{
+    margin-bottom: 2rem;
+}
+
+//mat-expansion-panel-content ng-trigger ng-trigger-bodyExpansion
+
