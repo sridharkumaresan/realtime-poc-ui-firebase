@@ -1,0 +1,18 @@
+<div class="card-container">
+<mat-card *ngFor="let card of cards" class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image {{card.image}}"></div>
+    <mat-card-title>{{card.title}}</mat-card-title>
+    <mat-card-subtitle>This is a demo app</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="./../../assets/images/{{card.image}}.jpg" alt="Photo" class="image">
+  <mat-card-content>
+    <p>
+      The description goes here. This could be a short or long descripition spanning several paragraphs
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" class="primary" (click)="openApp(card.link)">OPEN</button>
+  </mat-card-actions>
+</mat-card>
+</div>

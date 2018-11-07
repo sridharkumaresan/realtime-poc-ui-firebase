@@ -40,6 +40,7 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import 'hammerjs';
 import { DataGridComponent } from './data-grid/data-grid.component';
 import { SnackbarMessageComponent } from './data-grid/shared/snackbar-message/snackbar-message.component';
 import { FilterComponent } from './data-grid/filter/filter.component';
@@ -48,6 +49,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AddItemComponent } from './add-item/add-item.component';
+import { HomeComponent } from './home/home.component';
 
 const matModules = [
   MatAutocompleteModule,
@@ -92,7 +94,8 @@ const matModules = [
     DataGridComponent,
     SnackbarMessageComponent,
     FilterComponent,
-    AddItemComponent
+    AddItemComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
