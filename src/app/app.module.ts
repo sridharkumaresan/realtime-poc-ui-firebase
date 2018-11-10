@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import {
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
@@ -38,18 +40,28 @@ import {
 } from '@angular/material';
 
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import 'hammerjs';
-import { DataGridComponent } from './data-grid/data-grid.component';
-import { SnackbarMessageComponent } from './data-grid/shared/snackbar-message/snackbar-message.component';
-import { FilterComponent } from './data-grid/filter/filter.component';
+/* Wijmo related Import */
+import { WjGridModule } from 'wijmo/wijmo.angular2.grid';
+import { WjInputModule } from 'wijmo/wijmo.angular2.input';
+import { WjGridDetailModule } from 'wijmo/wijmo.angular2.grid.detail';
+import { WjCoreModule } from 'wijmo/wijmo.angular2.core';
+
+
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AddItemComponent } from './add-item/add-item.component';
+import 'hammerjs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { RestrictionListWjComponent } from './restriction-list-wj/restriction-list-wj.component';
+import { FilterComponent } from './restriction-list-wj/filter/filter.component';
+import { AddRestrictionComponent } from './add-restriction/add-restriction.component';
+import { SnackbarMessageComponent } from './shared/components/snackbar-message/snackbar-message.component';
+import { RestrictionListFbComponent } from './restriction-list-fb/restriction-list-fb.component';
 import { HomeComponent } from './home/home.component';
+import { SearchBoxComponent } from './shared/components/search-box/search-box.component';
 
 const matModules = [
   MatAutocompleteModule,
@@ -91,11 +103,13 @@ const matModules = [
   ],
   declarations: [
     AppComponent,
-    DataGridComponent,
+    RestrictionListWjComponent,
     SnackbarMessageComponent,
     FilterComponent,
-    AddItemComponent,
-    HomeComponent
+    AddRestrictionComponent,
+    RestrictionListFbComponent,
+    HomeComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -104,10 +118,12 @@ const matModules = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     matModules,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    WjGridModule, WjInputModule, WjGridDetailModule, WjCoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,20 +1,22 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
-import { DataGridService } from './data-grid.service';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { GridData } from './grid';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarMessageComponent } from './shared/snackbar-message/snackbar-message.component';
-import Util from './util';
+
+import { DataGridService } from './data-grid.service';
+import { Restriction } from '../shared/model/restriction';
+import { SnackbarMessageComponent } from '../shared/components/snackbar-message/snackbar-message.component';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import Util from '../shared/utils/util';
 
 @Component({
-  selector: 'app-data-grid',
-  templateUrl: './data-grid.component.html',
-  styleUrls: ['./data-grid.component.scss']
+  selector: 'app-restriction-list-fb',
+  templateUrl: './restriction-list-fb.component.html',
+  styleUrls: ['./restriction-list-fb.component.scss']
 })
-export class DataGridComponent implements OnInit, OnDestroy {
+export class RestrictionListFbComponent implements OnInit, OnDestroy {
+
   
   @ViewChild(MatPaginator) paginator: MatPaginator;   
   // pollInterval: number = 400000;
@@ -22,28 +24,17 @@ export class DataGridComponent implements OnInit, OnDestroy {
   dataSource;
   initialLoad: boolean = true;
 
-  newItem: GridData;
+  newItem: Restriction;
   newItemSubscription: Subscription = new Subscription();
   itemListSubscription: Subscription = new Subscription();
 
   constructor(
     public snackBar: MatSnackBar, 
     private gridService: DataGridService) {
-
-    //Generate 10 random data on page load using the randomData generator utility
-    // this.dataSource = this.gridService.generateRandomGridData(50);
-  
-    this.getList();
-    
+      this.getList();
   }
 
   ngOnInit() {
-    //Add the newly generated DataGrid item to dataSource property
-    // this.newItemSubscription = this.getPRLItem().subscribe((data: GridData[]) => {
-    //   this.newItem = data[0];
-    //   this.openSnackBar(this.newItem);
-    //   this.dataSource = [...this.dataSource, this.newItem];
-    // })
     
   }
   
@@ -55,7 +46,7 @@ export class DataGridComponent implements OnInit, OnDestroy {
   getList = () => {
     this.newItemSubscription = this.gridService.getPRLList()
       .subscribe(
-        (items: GridData[]) => {
+        (items: Restriction[]) => {
           this.dataSource = new MatTableDataSource([...items]);
           this.dataSource.paginator = this.paginator;
           if(!this.initialLoad) {
@@ -81,12 +72,4 @@ export class DataGridComponent implements OnInit, OnDestroy {
     }
   }
 
-  //poll the getPRLItem service to get one random generated DataGrid item
-  // getPRLItem = () => {
-  //   return interval(this.pollInterval).pipe(
-  //     switchMap(() => this.gridService.getPRLItem())
-  //   )
-  // }
 }
-
-

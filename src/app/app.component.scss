@@ -4,9 +4,9 @@
     top: 0; /* Sets the sticky toolbar to be on top */
     z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
-// .menu-item{
-//     color: #68EFAD;
-// }
+.menu-item{
+    color: #68EFAD;
+}
 .example-spacer {
     flex: 1 1 auto;
 }
@@ -18,16 +18,17 @@
             margin-left: 10px;
         }
     }
-    
+
 }
-.user-face {
+.nav-icon, .user-face {
     border: 1px solid;
     display: flex;
     border-radius: 50%;
     padding: .5rem;
     box-shadow: inset 3px 3px 4px #000;
-    
+    cursor: pointer;
 }
+
 .logo {
     display: flex;
     justify-content: center;
@@ -38,6 +39,14 @@
         width: 3.5rem;
     }
 }
-.mat-drawer-content{
-    height: 90vh;
+.app-container {
+    height: 100%;
+    // width: 100%;
+    // min-width: 100%;
+    // min-height: 100%;
+    // margin: 0;
+}
+.mat-sidenav-container {
+    // background: #fff;
+    height: calc(100% - 0.01px);
 }

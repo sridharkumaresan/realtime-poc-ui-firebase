@@ -57,6 +57,7 @@ export class FilterComponent implements OnInit {
                                     : [];
                       return {[k]: value} 
                     }))
+    console.log('Filters ', this.filters);                    
     this.filterChanges.emit(filters);
   }
 
@@ -65,6 +66,8 @@ export class FilterComponent implements OnInit {
     // this.panelOpenState = false;
     this.mep.close();
     this.filters = null
-    this.filterChanges.emit(this.filters);
+    this.filterChanges.emit(null);
+    console.log('Filters ', this.filters);                    
+
   }
 }
