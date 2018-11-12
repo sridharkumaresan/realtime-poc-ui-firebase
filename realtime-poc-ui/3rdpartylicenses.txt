@@ -1073,9 +1073,13 @@ THE SOFTWARE.
 
 @angular/material/table
 
-@angular/material/icon
-
 @angular/material/core
+
+@angular/material/list
+
+@angular/material/divider
+
+@angular/material/icon
 
 @angular/material/expansion
 
@@ -1101,13 +1105,9 @@ firebase/database
 
 @angular/material/snack-bar
 
-@angular/material/list
-
 @angular/material/toolbar
 
 @angular/material/menu
-
-@angular/material/divider
 
 @angular/material/sidenav
 
