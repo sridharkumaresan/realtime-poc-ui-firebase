@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'list-wj', component: RestrictionListWjComponent },
   { path: 'list-fb', component: RestrictionListFbComponent },
   { path: 'add', component: AddRestrictionComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: '**', redirectTo: ''}
 ];
 
