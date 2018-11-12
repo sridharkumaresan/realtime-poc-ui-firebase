@@ -19,9 +19,16 @@ export class RestrictionListFbComponent implements OnInit, OnDestroy {
 
   
   @ViewChild(MatPaginator) paginator: MatPaginator;   
+
+  // MatPaginator Inputs
+  length: number;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
   // pollInterval: number = 400000;
   displayedColumns: string[] = ['tier','originalDateAdded', 'issuerName', 'esmi', 'equityTicker', 'debtTicker', 'restrictionType', 'restrictionCategory'];
-  dataSource;
+  dataSource = [];
+  displayedDataChunk = [];
   initialLoad: boolean = true;
 
   newItem: Restriction;
@@ -46,15 +53,28 @@ export class RestrictionListFbComponent implements OnInit, OnDestroy {
   getList = () => {
     this.newItemSubscription = this.gridService.getPRLList()
       .subscribe(
-        (items: Restriction[]) => {
-          this.dataSource = new MatTableDataSource([...items]);
-          this.dataSource.paginator = this.paginator;
+        (items: []) => {
+          // this.dataSource = new MatTableDataSource([...items]);
+          // this.dataSource.paginator = this.paginator;
+          this.length = items.length;
+          this.dataSource = [...items];
+          this.displayedDataChunk = this.dataSource.slice(0,this.pageSize);          
           if(!this.initialLoad) {
             this.openSnackBar(items)          
           }
           if(this.initialLoad) this.initialLoad = false;
         }
       );
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+
+  onPageChanged(e) {
+    let firstCut = e.pageIndex * e.pageSize;
+    let secondCut = firstCut + e.pageSize;
+    this.displayedDataChunk = this.dataSource.slice(firstCut, secondCut);
   }
 
   openSnackBar(data: any) {
@@ -66,7 +86,7 @@ export class RestrictionListFbComponent implements OnInit, OnDestroy {
 
   applyFilter = (filters: any) => {
     if(filters){
-      this.dataSource = [...Util.multiFilter(this.dataSource.data, filters)];    
+      this.displayedDataChunk = [...Util.multiFilter(this.displayedDataChunk, filters)];    
     }else {
       this.getList();
     }

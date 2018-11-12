@@ -20,59 +20,74 @@
   </mat-card-content>
 </mat-card> -->
 
+  <table fxHide fxShow.gt-sm mat-table [dataSource]="displayedDataChunk" class="primary mat-elevation-z8">
+    <ng-container matColumnDef="tier">
+      <th mat-header-cell *matHeaderCellDef> Tier </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list>
+          <ng-container *ngIf="'higher' === element.tier; then high; else standard"></ng-container>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="originalDateAdded">
+      <th mat-header-cell *matHeaderCellDef> Original Date Added</th>
+      <td mat-cell *matCellDef="let element"> {{element.originalDateAdded | date}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="issuerName">
+      <th mat-header-cell *matHeaderCellDef> Issuer Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.issuerName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="esmi">
+      <th mat-header-cell *matHeaderCellDef> ESMI </th>
+      <td mat-cell *matCellDef="let element"> {{element.esmi}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="equityTicker">
+      <th mat-header-cell *matHeaderCellDef> Equity Ticker </th>
+      <td mat-cell *matCellDef="let element"> {{element.equityTicker}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="debtTicker">
+      <th mat-header-cell *matHeaderCellDef> Debt Ticker </th>
+      <td mat-cell *matCellDef="let element"> {{element.debtTicker}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="restrictionType">
+      <th mat-header-cell *matHeaderCellDef> Restriction Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.restrictionType}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="restrictionCategory">
+      <th mat-header-cell *matHeaderCellDef> Restriction Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.restrictionCategory}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
-<table mat-table [dataSource]="dataSource" class="primary mat-elevation-z8">
-  <ng-container matColumnDef="tier">
-    <th mat-header-cell *matHeaderCellDef> Tier </th>
-    <td mat-cell *matCellDef="let element">
-      <mat-chip-list>
-        <ng-container *ngIf="'higher' === element.tier; then high; else standard"></ng-container>
-        <ng-template #high>
-          <mat-chip color="warn" selected>H</mat-chip>
-        </ng-template>
-        <ng-template #standard>
-          <mat-chip color="accent" selected>S</mat-chip>
-        </ng-template>
-      </mat-chip-list>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="originalDateAdded">
-    <th mat-header-cell *matHeaderCellDef> Original Date Added</th>
-    <td mat-cell *matCellDef="let element"> {{element.originalDateAdded | date}} </td>
-  </ng-container>
+  <mat-list fxHide fxShow.lt-md>
+    <mat-list-item *ngFor="let element of displayedDataChunk">
+        <mat-chip-list>
+          <ng-container *ngIf="'higher' === element.tier; then high; else standard"></ng-container>
+        </mat-chip-list>
+      <h4 mat-line>{{ element.issuerName }}</h4>
+      <p mat-line>ESMI: {{ element.esmi }} </p>
+      <p mat-line>Equity Ticker: {{ element.equityTicker}} </p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
 
-  <ng-container matColumnDef="issuerName">
-    <th mat-header-cell *matHeaderCellDef> Issuer Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.issuerName}} </td>
-  </ng-container>
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator> -->
 
-  <ng-container matColumnDef="esmi">
-    <th mat-header-cell *matHeaderCellDef> ESMI </th>
-    <td mat-cell *matCellDef="let element"> {{element.esmi}} </td>
-  </ng-container>
+<mat-paginator showFirstLastButtons [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+</mat-paginator>
 
-  <ng-container matColumnDef="equityTicker">
-    <th mat-header-cell *matHeaderCellDef> Equity Ticker </th>
-    <td mat-cell *matCellDef="let element"> {{element.equityTicker}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="debtTicker">
-    <th mat-header-cell *matHeaderCellDef> Debt Ticker </th>
-    <td mat-cell *matCellDef="let element"> {{element.debtTicker}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="restrictionType">
-    <th mat-header-cell *matHeaderCellDef> Restriction Type </th>
-    <td mat-cell *matCellDef="let element"> {{element.restrictionType}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="restrictionCategory">
-    <th mat-header-cell *matHeaderCellDef> Restriction Category </th>
-    <td mat-cell *matCellDef="let element"> {{element.restrictionCategory}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-<mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+<ng-template #high>
+  <mat-chip color="warn" selected>H</mat-chip>
+</ng-template>
+<ng-template #standard>
+  <mat-chip color="accent" selected>S</mat-chip>
+</ng-template>
